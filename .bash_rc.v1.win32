@@ -1,0 +1,25 @@
+setupdb ()
+{
+    bake db:util:compile && bundle exec rake db:initialize;
+    iisreset
+}
+dev-lic ()
+{
+    cp ${REPO_HOME}/Core/Common/Licenses/VersionOne.Dev.lic ${REPO_HOME}/Core/VersionOne.Web/bin/;
+}
+lic ()
+{
+    echo "pounding in" $@;
+    rm ${REPO_HOME}/Core/VersionOne.Web/bin/*.lic;
+    cp ${REPO_HOME}/Core/Common/Licenses/VersionOne.$@.lic /c/dev/Core/VersionOne.Web/bin/;
+    echo "copied over" $@
+}
+recycle ()
+{
+    powershell -Command "& { ([ADSI] 'IIS://localhost/W3SVC/AppPools/ASP.NET v4.0').psbase.invoke('recycle') }"
+}
+
+upgrade ()
+{
+    bake db:util:compile && bake db:upgrade && bake db:upgrade
+}

@@ -1,0 +1,19 @@
+"*":
+  core:
+    disabledPackages: [
+    ]
+    themes: [
+      "solarized-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  welcome:
+    showOnStartup: false
+  linter:
+    showErrorInline: true
+    subtleLinterErrors: [
+      "htmlhint"
+    ]
+  editor:
+    showIndentGuide: true
+    softWrap: true
+    invisibles: {}

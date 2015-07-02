@@ -1,0 +1,50 @@
+[user]
+  name = Andrew Smith
+  email = andrew@WeAreSoftwareCraftsmen.com
+
+[alias]
+  cl = clean -fd
+  ci = !sh -c 'git commit -am "$0"'
+  co = checkout
+  nb = !sh -c 'git checkout -b $0'
+  db = !sh -c 'git branch -D $0'
+  pb = !sh -c 'git pull --rebase $0 $1'
+  mt = mergetool
+  dt = difftool
+  fa = fetch --all
+  rh = reset --hard
+  rb = !sh -c 'git reset --hard $0/$1'
+  st = status
+  gui = !sh -c '/usr/local/git/libexec/git-core/git-gui'
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+
+[merge]
+    tool = diffmerge
+[diff]
+  tool = diffmerge
+
+[mergetool "diffmerge"]
+  keepBackup = false
+  trustExitCode = true
+  cmd = diffmerge -merge -result="$PWD/$MERGED" "$PWD/$LOCAL" "$PWD/$BASE" "$PWD/$REMOTE"
+
+[difftool "diffmerge"]
+  cmd = diffmerge "$LOCAL" "$REMOTE"
+
+[push]
+  default = simple
+
+[branch]
+  autosetuprebase = always
+
+[core]
+  excludesfile = ~/gitignore
+  autocrlf = input
+  editor = atom --wait
+
+[filter "media"]
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
+
+[gui]
+  gcwarning = false
