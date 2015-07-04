@@ -8,13 +8,13 @@ var platform = process.platform;
 var home = platform === 'darwin' ? '/Users/andrewsmith' : 'c:/Users/andrewsmith';
 
 linkHomeDotFiles();
+linkAtomFiles();
 
 function linkAtomFiles() {
-
+  mklink(path.join(__dirname, './atom/config.cson'), path.join(home, '.atom/config.cson'));
 }
 
 function linkHomeDotFiles() {
-  var destination = home;
   readdir('./')
     .then(function (fileItems) {
       fileItems.filter(function (item) {
@@ -27,7 +27,7 @@ function linkHomeDotFiles() {
         })
         .forEach(function (item) {
           var newItem = item.replace('.global', '').replace('.'+platform, '');
-          mklink(item, destination + '/' + newItem);
+          mklink(item, path.join(home, newItem));
         });
     });
 }
