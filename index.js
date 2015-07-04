@@ -2,13 +2,36 @@
 
 require('babel/polyfill');
 var path = require('path');
-var exec = require('child_process').exec;
+var childProcess = require('child_process');
+var exec = childProcess.exec;
+var execSync = childProcess.execSync;
 var fs = require('fs');
 var platform = process.platform;
-var home = platform === 'darwin' ? '/Users/andrewsmith' : 'c:/Users/andrewsmith';
+var username = getUsername();
+var home = platform === 'darwin' ? path.join('/Users', username) : path.join('c:/Users/', username);
 
 linkHomeDotFiles();
 linkAtomFiles();
+
+function linkVisualStudioSettings() {
+	if (platform !== 'win32') {
+		return;
+	}
+	readdir('./visualStudio')
+		.then(function (fileItems) {
+			fileItems
+				.filter(function (item) {
+					return fs.lstatSync(item).isFile();
+				})
+				.filter(function (item) {
+					var visualStudioSettings = /\.vssettings$/;
+					return visualStudioSettings.exec(item);
+				})
+				.forEach(function (item) {
+					mklink(item, path.join(home, 'Documents/Visual Studio 2013/Settings', newItem));
+				});
+		});
+}
 
 function linkAtomFiles() {
 	mklink(path.join(__dirname, './atom/config.cson'), path.join(home, '.atom/config.cson'));
@@ -17,9 +40,10 @@ function linkAtomFiles() {
 function linkHomeDotFiles() {
 	readdir('./')
 		.then(function (fileItems) {
-			fileItems.filter(function (item) {
-				return fs.lstatSync(item).isFile();
-			})
+			fileItems
+				.filter(function (item) {
+					return fs.lstatSync(item).isFile();
+				})
 				.filter(function (item) {
 					var platformExp = new RegExp('(' + platform + '|global)$');
 					var gitignoreExp = /^gitignore$/;
@@ -75,3 +99,9 @@ function readdir(directoryPath) {
 		fs.readdir(directoryPath, finish(resolve, reject));
 	});
 }
+
+function getUsername() {
+	var username = execSync("whoami", {encoding: 'utf8', timeout: 1000});
+	return String(username).trim();
+}
+
