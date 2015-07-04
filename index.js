@@ -14,7 +14,7 @@ function linkAtomFiles() {
 }
 
 function linkHomeDotFiles() {
-  var destination = home + '/test';
+  var destination = home;
   readdir('./')
     .then(function (fileItems) {
       fileItems.filter(function (item) {
