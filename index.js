@@ -23,7 +23,8 @@ function linkHomeDotFiles() {
 				.filter(function (item) {
 					var platformExp = new RegExp('(' + platform + '|global)$');
 					var gitignoreExp = /^gitignore$/;
-					return platformExp.exec(item) || gitignoreExp.exec(item);
+					var gitCompletionBash = /^git\-completion\.bash$/;
+					return platformExp.exec(item) || gitignoreExp.exec(item) || gitCompletionBash.exec(item);
 				})
 				.forEach(function (item) {
 					var newItem = item.replace('.global', '').replace('.' + platform, '');
