@@ -5,6 +5,7 @@ import * as Shell from './applications/shell';
 import * as Atom from './applications/atom';
 import * as VisualStudio from './applications/visualStudio';
 import * as Git from './applications/git';
+import * as Chrome from './applications/chrome';
 
 export default function () {
 	Promise.all([
@@ -12,6 +13,7 @@ export default function () {
 		Atom.install(),
 		VisualStudio.install(),
 		Git.install()
+		Chrome.install(),
 	])
 		.then(()=> {
 			update();

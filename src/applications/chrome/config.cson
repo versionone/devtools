@@ -1,0 +1,21 @@
+"*":
+  core:
+    disabledPackages: []
+    themes: [
+      "solarized-dark-ui"
+      "solarized-dark-syntax"
+    ]
+  welcome:
+    showOnStartup: false
+  linter:
+    showErrorInline: true
+    subtleLinterErrors: [
+      "htmlhint"
+    ]
+  editor:
+    showIndentGuide: true
+    softWrap: true
+    invisibles: {}
+  react: {}
+  "exception-reporting":
+    userId: "ab4dd5de-c884-7b8e-222e-65c2cec345c8"
