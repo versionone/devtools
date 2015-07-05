@@ -1,11 +1,11 @@
 'use strict';
 
-import dotfiles from './dotfiles';
+import * as DotFiles from './applications/dotfiles';
 import * as Atom from './applications/atom';
 import * as VisualStudio from './applications/visualStudio';
 
-export default function(){
-	dotfiles();
+export default function () {
+	DotFiles.settings();
 	Atom.settings();
 	VisualStudio.settings();
 }

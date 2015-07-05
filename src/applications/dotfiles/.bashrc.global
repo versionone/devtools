@@ -1,22 +1,24 @@
 REPO_HOME=$HOME/Developer/repositories
 
-[ -f $HOME/.alias.global ] &&	source $HOME/.alias.global
+[ -f $HOME/.alias ] &&	source $HOME/.alias
 [ -f $HOME/git-completion.bash ] && source $HOME/git-completion.bash
 
 # OSX bash files
 if [ "$OSTYPE" == "darwin"* ]; then
-  [-f $HOME/.alias.osx] && source $HOME/.alias.osx
+  [ -f $HOME/.alias.osx ] && source $HOME/.alias.osx
 fi
 
 # Windows bash files
 if [ "$OSTYPE" == "win"* ]; then
-  [-f $HOME/.alias.win] && source $HOME/.alias.win
+  [ -f $HOME/.alias.win ] && source $HOME/.alias.win
 fi
 
-[-f $HOME/.bash_rc.v1] && source $HOME/.bash_rc.v1
+[ -f $HOME/.bash_rc.v1 ] && source $HOME/.bash_rc.v1
 
 # added by travis gem
 [ -f /Users/andrewsmith/.travis/travis.sh ] && source /Users/andrewsmith/.travis/travis.sh
+
+cd $REPO_HOME
 
 SSH_ENV=$HOME/.ssh/environment
 

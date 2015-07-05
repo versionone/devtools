@@ -1,0 +1,6 @@
+[ -f '/c/Program Files/Sublime Text 3/sublime_text.exe' ] && alias subl='/c/Program Files/Sublime Text 3/sublime_text
+.exe &'
+[ -f '/c/Program Files (x86)/Microsoft Visual Studio 12.0/Common7/IDE/devenv.exe' ] alias vs='/c/Program Files (x86)
+/Microsoft Visual Studio 12.0/Common7/IDE/devenv.exe &'
+[ -f '/c/Program Files/SourceGear/Common/DiffMerge/sgdm.exe' ] && alias diffmerge='/c/Program
+Files/SourceGear/Common/DiffMerge/sgdm.exe'
