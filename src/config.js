@@ -1,10 +1,10 @@
 'use strict';
 
-var platform = process.platform;
+var platform = process.platform.replace(/(32|64)/, '');
 
 export default Object.freeze({
 	platform,
 	isOsx: platform === 'darwin',
-	isWindows: platform === 'win32',
+	isWindows: platform === 'win',
 	home: process.env.HOME || process.env.USERPROFILE
 });
