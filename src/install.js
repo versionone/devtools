@@ -15,33 +15,38 @@ import * as WebStorm from './applications/webstorm';
 
 export default function () {
 	initialize()
-		.then(()=>Promise.all([
-			Alfred.install(),
-			Atom.install(),
-			Bash.install(),
-			Chrome.install(),
-			Git.install(),
-			Python.install(),
-			Ruby.install(),
-			Slack.install(),
-			VisualStudio.install(),
-			WebStorm.install()
-		]))
 		.then(()=> {
-			update();
+			console.log('installing...');
+			return Promise.all([
+				Alfred.install(),
+				Atom.install(),
+				Bash.install(),
+				Chrome.install(),
+				Git.install(),
+				Python.install(),
+				Ruby.install(),
+				Slack.install(),
+				VisualStudio.install(),
+				WebStorm.install()
+			]);
 		})
-	.then(()=>Promise.all([
-			Alfred.settings(),
-			Atom.settings(),
-			Bash.settings(),
-			Chrome.settings(),
-			Git.settings(),
-			Python.settings(),
-			Ruby.settings(),
-			Slack.settings(),
-			VisualStudio.settings(),
-			WebStorm.settings()
-		]));
+		.then(()=> {
+			return update();
+		})
+		.then(()=> {
+			return Promise.all([
+				Alfred.settings(),
+				Atom.settings(),
+				Bash.settings(),
+				Chrome.settings(),
+				Git.settings(),
+				Python.settings(),
+				Ruby.settings(),
+				Slack.settings(),
+				VisualStudio.settings(),
+				WebStorm.settings()
+			]);
+		});
 }
 
 function initialize() {
@@ -60,4 +65,7 @@ function update() {
 	} else if (config.isWindows) {
 		return shell('choco upgrade');
 	}
+	return new Promise(resolve=> {
+		resolve({});
+	})
 }

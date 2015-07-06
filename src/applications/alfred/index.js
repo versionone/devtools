@@ -6,15 +6,16 @@ import path from 'path';
 
 export function settings() {
 	return new Promise(resolve=> {
-		resolve({})
+		resolve({});
 	});
 }
 
 export function install() {
+	console.log('installing alfred...');
 	if (config.isOsx) {
 		return shell('brew cask install alfred');
 	}
 	return new Promise(resolve=> {
-		resolve({})
+		resolve({});
 	});
 }

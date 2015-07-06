@@ -27,7 +27,8 @@ export function settings() {
 }
 
 export function install() {
+	console.log('installing visual studio...');
 	return new Promise(resolve=> {
-		resolve({})
+		resolve({}) ;
 	});
 }

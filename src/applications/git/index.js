@@ -27,12 +27,13 @@ export function settings() {
 }
 
 export function install() {
+	console.log('installing git...');
 	if (config.isOsx) {
 		return shell('brew install git');
 	} else if (config.isWindows) {
 		return shell('choco install git');
 	}
 	return new Promise(resolve=> {
-		resolve({})
+		resolve({});
 	});
 }

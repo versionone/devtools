@@ -27,12 +27,13 @@ export function settings() {
 }
 
 export function install() {
+	console.log('installing bash...');
 	if (config.isOsx) {
 		return shell('brew cask install iterm2');
 	} else if (config.isWindows) {
 		return shell('choco install cmder -pre');
 	}
 	return new Promise(resolve=> {
-		resolve({})
+		resolve({});
 	});
 }
