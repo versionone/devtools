@@ -21,7 +21,7 @@ export function settings() {
 				console.log(error);
 			}
 			if (!result) {
-				regedit.createKey(registeryKey);
+				regedit.createKey(registryKey);
 			}
 
 			var registryValue = {};
