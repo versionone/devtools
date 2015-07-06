@@ -28,8 +28,8 @@ export function settings() {
 
 export function install() {
 	if (config.isOsx) {
-		return shell.run('brew install git');
+		return shell('brew install git');
 	} else if (config.isWindows) {
-		return shell.run('choco install git');
+		return shell('choco install git');
 	}
 }

@@ -9,8 +9,8 @@ export function settings(){
 
 export function install() {
 	if (config.isOsx) {
-		return shell.run('brew cask install slack');
+		return shell('brew cask install slack');
 	} else if (config.isWindows) {
-		return shell.run('choco install slack');
+		return shell('choco install slack');
 	}
 }

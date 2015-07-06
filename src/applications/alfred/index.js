@@ -10,6 +10,6 @@ export function settings(){
 
 export function install() {
 	if (config.isOsx) {
-		return shell.run('brew cask install alfred');
+		return shell('brew cask install alfred');
 	}
 }

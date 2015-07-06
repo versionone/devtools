@@ -10,8 +10,8 @@ export function settings(){
 
 export function install() {
 	if (config.isOsx) {
-		return shell.run('brew cask install atom');
+		return shell('brew cask install atom');
 	} else if (config.isWindows) {
-		return shell.run('choco install Atom');
+		return shell('choco install Atom');
 	}
 }

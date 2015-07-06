@@ -1,7 +1,7 @@
 'use strict';
 
 import config from './config';
-import {Shell} from './utils';
+import {shell} from './utils';
 import * as Bash from './applications/shell';
 import * as Atom from './applications/atom';
 import * as VisualStudio from './applications/visualStudio';
@@ -28,18 +28,18 @@ export default function () {
 
 function initialize() {
 	if (config.isOsx) {
-		return Shell.run('ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
-			.then(() =>Shell.run('brew install cask'))
+		return shell('ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
+			.then(() =>shell('brew install cask'))
 	} else if (config.isWindows) {
-		return Shell.run(`@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin`)
+		return shell(`@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin`)
 	}
 	throw config.unsupportedPlatformError;
 }
 
 function update() {
 	if (config.isOsx) {
-		return shell.run('brew update');
+		return shell('brew update');
 	} else if (config.isWindows) {
-		return shell.run('choco upgrade');
+		return shell('choco upgrade');
 	}
 }
