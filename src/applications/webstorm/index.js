@@ -1,7 +1,9 @@
 'use strict';
 
-export function settings(){
-
+export function settings() {
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }
 
 export function install() {
@@ -10,4 +12,7 @@ export function install() {
 	} else if (config.isWindows) {
 		return shell('choco install webstorm');
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }

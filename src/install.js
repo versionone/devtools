@@ -2,30 +2,46 @@
 
 import config from './config';
 import {shell} from './utils';
-import * as Bash from './applications/bash';
-import * as Atom from './applications/atom';
-import * as VisualStudio from './applications/visualStudio';
-import * as Git from './applications/git';
 import * as Alfred from './applications/alfred';
+import * as Atom from './applications/atom';
+import * as Bash from './applications/bash';
 import * as Chrome from './applications/chrome';
-import * as Slack from './applications/slack';
-import * as Ruby from './applications/ruby';
+import * as Git from './applications/git';
 import * as Python from './applications/python2.7';
+import * as Ruby from './applications/ruby';
+import * as Slack from './applications/slack';
+import * as VisualStudio from './applications/visualStudio';
+import * as WebStorm from './applications/webstorm';
 
 export default function () {
 	initialize()
 		.then(()=>Promise.all([
-			Bash.install(),
-			Atom.install(),
-			VisualStudio.install(),
-			Git.install(),
 			Alfred.install(),
+			Atom.install(),
+			Bash.install(),
 			Chrome.install(),
-			Slack.install()
+			Git.install(),
+			Python.install(),
+			Ruby.install(),
+			Slack.install(),
+			VisualStudio.install(),
+			WebStorm.install()
 		]))
 		.then(()=> {
 			update();
-		});
+		})
+	.then(()=>Promise.all([
+			Alfred.settings(),
+			Atom.settings(),
+			Bash.settings(),
+			Chrome.settings(),
+			Git.settings(),
+			Python.settings(),
+			Ruby.settings(),
+			Slack.settings(),
+			VisualStudio.settings(),
+			WebStorm.settings()
+		]));
 }
 
 function initialize() {

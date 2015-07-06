@@ -3,8 +3,10 @@
 import {shell} from './../../utils';
 import config from './../../config';
 
-export function settings(){
-
+export function settings() {
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }
 
 export function install() {
@@ -13,4 +15,7 @@ export function install() {
 	} else if (config.isWindows) {
 		return shell('choco install slack');
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }

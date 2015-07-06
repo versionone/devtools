@@ -6,7 +6,9 @@ import path from 'path';
 
 export function settings() {
 	if (!config.isWindows) {
-		return;
+		return new Promise(resolve=> {
+			resolve({})
+		});
 	}
 	readdir(path.join(__dirname, './'))
 		.then(function (fileItems) {
@@ -25,5 +27,7 @@ export function settings() {
 }
 
 export function install() {
-
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }

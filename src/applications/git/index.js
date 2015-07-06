@@ -32,4 +32,7 @@ export function install() {
 	} else if (config.isWindows) {
 		return shell('choco install git');
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }

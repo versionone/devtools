@@ -33,6 +33,9 @@ export function settings() {
 			regedit.putValue(registryValue);
 		});
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }
 
 export function install() {
@@ -41,4 +44,7 @@ export function install() {
 	} else if (config.isWindows) {
 		return shell('choco install googlechrome');
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }

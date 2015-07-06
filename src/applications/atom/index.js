@@ -14,4 +14,7 @@ export function install() {
 	} else if (config.isWindows) {
 		return shell('choco install Atom');
 	}
+	return new Promise(resolve=> {
+		resolve({})
+	});
 }
