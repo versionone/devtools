@@ -23,3 +23,7 @@ export function settings() {
 				});
 		});
 }
+
+export function install() {
+
+}
