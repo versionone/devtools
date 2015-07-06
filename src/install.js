@@ -9,6 +9,7 @@ import * as Git from './applications/git';
 import * as Alfred from './applications/alfred';
 import * as Chrome from './applications/chrome';
 import * as Slack from './applications/slack';
+import * as Ruby from './applications/ruby';
 import * as Python from './applications/python2.7';
 
 export default function () {
