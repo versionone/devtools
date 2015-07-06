@@ -1,7 +1,7 @@
 'use strict';
 
 import path from 'path';
-import {exec} from 'child_process';
+import {exec, spawn} from 'child_process';
 import fs from 'fs';
 import config from './config';
 
@@ -37,12 +37,28 @@ export function readdir(directoryPath) {
 
 export function shell(command) {
 	return new Promise((resolve, reject) => {
-		exec(command, (error, result)=> {
+		exec(command, (error, stdout, stderr)=> {
+			console.log(error, stdout, stderr);
 			if (error) {
 				reject(error);
 				return;
 			}
-			resolve(result);
+			resolve(true);
 		})
+	});
+}
+
+export function powershell(command) {
+	return new Promise((resolve, reject)=> {
+		var cmdProcess = spawn('powershell.exe', [command]);
+		cmdProcess.stdout.on('data', (data)=> {
+			console.log(data.toString());
+		});
+		cmdProcess.stderr.on('data', (data)=> {
+			reject(data.toString());
+		});
+		cmdProcess.on('exit', ()=> {
+			resolve(true);
+		});
 	});
 }

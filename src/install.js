@@ -1,7 +1,7 @@
 'use strict';
 
 import config from './config';
-import {shell} from './utils';
+import {shell, powershell} from './utils';
 import * as Alfred from './applications/alfred';
 import * as Atom from './applications/atom';
 import * as Bash from './applications/bash';
@@ -50,11 +50,12 @@ export default function () {
 }
 
 function initialize() {
+	console.log(`pre-install: initialization for ${config.platform}`);
 	if (config.isOsx) {
 		return shell('ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"')
 			.then(() =>shell('brew install cask'))
 	} else if (config.isWindows) {
-		return shell(`@powershell -NoProfile -ExecutionPolicy Bypass -Command "iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))" && SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin`)
+		return powershell(`iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))`)
 	}
 	throw config.unsupportedPlatformError;
 }
