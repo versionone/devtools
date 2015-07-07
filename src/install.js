@@ -40,6 +40,9 @@ export default function () {
 				VisualStudio.settings(),
 				WebStorm.settings()
 			]);
+		})
+		.catch(error=> {
+			console.log(error);
 		});
 }
 
@@ -61,6 +64,6 @@ function update() {
 		return shell('choco upgrade all -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	})
 }

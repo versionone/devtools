@@ -25,5 +25,8 @@ export default function () {
 		Slack.settings(),
 		VisualStudio.settings(),
 		WebStorm.settings()
-	]);
+	])
+		.catch(error=> {
+			console.log(error);
+		});
 }
