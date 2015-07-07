@@ -18,7 +18,6 @@ export function mklink(src, dest) {
 	if (config.isWindows) {
 		command = `mklink ${dest} ${src}`;
 	}
-	console.log(command);
 	return shell(command);
 }
 
@@ -36,6 +35,10 @@ export function readdir(directoryPath) {
 }
 
 export function shell(command) {
+	if (config.isWindows){
+		return powershell(command);
+	}
+	console.log(command);
 	return new Promise((resolve, reject) => {
 		exec(command, (error, stdout, stderr)=> {
 			console.log(error, stdout, stderr);
@@ -49,16 +52,19 @@ export function shell(command) {
 }
 
 export function powershell(command) {
+	console.log('powershell.exe', command);
 	return new Promise((resolve, reject)=> {
-		var cmdProcess = spawn('powershell.exe', [command]);
+		var cmdProcess = spawn('powershell.exe', ['-NoProfile', '-ExecutionPolicy', 'Bypass', command]);
 		cmdProcess.stdout.on('data', (data)=> {
 			console.log(data.toString());
 		});
 		cmdProcess.stderr.on('data', (data)=> {
+			console.log(data.toString());
 			reject(data.toString());
 		});
 		cmdProcess.on('exit', ()=> {
 			resolve(true);
 		});
+		cmdProcess.stdin.end();
 	});
 }

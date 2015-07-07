@@ -43,7 +43,7 @@ export function install() {
 	if (config.isOsx) {
 		return shell('brew cask install google-chrome');
 	} else if (config.isWindows) {
-		return shell('choco install googlechrome');
+		return shell('choco install googlechrome -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

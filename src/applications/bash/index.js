@@ -1,6 +1,6 @@
 'use strict';
 
-import {readdir,mklink} from './../../utils';
+import {readdir, mklink, shell} from './../../utils';
 import path from 'path';
 import config from './../../config';
 import fs from 'fs';
@@ -31,7 +31,7 @@ export function install() {
 	if (config.isOsx) {
 		return shell('brew cask install iterm2');
 	} else if (config.isWindows) {
-		return shell('choco install cmder -pre');
+		return shell('choco install cmder -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

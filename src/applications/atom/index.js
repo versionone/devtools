@@ -1,6 +1,6 @@
 'use strict';
 
-import {shell, mklink} from './../../utils';
+import {shell, mklink, powershell} from './../../utils';
 import config from './../../config';
 import path from 'path';
 
@@ -13,7 +13,7 @@ export function install() {
 	if (config.isOsx) {
 		return shell('brew cask install atom');
 	} else if (config.isWindows) {
-		return shell('choco install Atom');
+		return shell('choco install atom -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

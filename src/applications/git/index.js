@@ -31,7 +31,7 @@ export function install() {
 	if (config.isOsx) {
 		return shell('brew install git');
 	} else if (config.isWindows) {
-		return shell('choco install git');
+		return shell('choco install git -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

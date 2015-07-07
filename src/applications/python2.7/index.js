@@ -13,7 +13,7 @@ export function settings() {
 export function install() {
 	console.log('installing python 2.7...');
 	if (config.isWindows) {
-		return shell('choco install python2');
+		return shell('choco install python2 -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

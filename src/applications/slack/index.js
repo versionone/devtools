@@ -14,7 +14,7 @@ export function install() {
 	if (config.isOsx) {
 		return shell('brew cask install slack');
 	} else if (config.isWindows) {
-		return shell('choco install slack');
+		return shell('choco install slack -y');
 	}
 	return new Promise(resolve=> {
 		resolve({});

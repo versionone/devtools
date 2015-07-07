@@ -13,8 +13,8 @@ export function settings(){
 export function install() {
 	console.log('installing ruby...');
 	if (config.isWindows) {
-		return shell('choco install ruby -version 1.9.3.55100')
-			.then(()=>shell('choco install ruby.devkit'));
+		return shell('choco install ruby -version 1.9.3.55100 -y')
+			.then(()=>shell('choco install ruby.devkit -y'));
 	}
 	return new Promise(resolve=> {
 		resolve({});
