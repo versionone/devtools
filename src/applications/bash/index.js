@@ -34,6 +34,6 @@ export function install() {
 		return shell('choco install cmder -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

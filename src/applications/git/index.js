@@ -34,6 +34,6 @@ export function install() {
 		return shell('choco install git -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

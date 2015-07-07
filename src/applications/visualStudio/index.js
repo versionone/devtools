@@ -7,7 +7,7 @@ import path from 'path';
 export function settings() {
 	if (!config.isWindows) {
 		return new Promise(resolve=> {
-			resolve({})
+			resolve(true)
 		});
 	}
 	readdir(path.join(__dirname, './'))
@@ -29,6 +29,6 @@ export function settings() {
 export function install() {
 	console.log('installing visual studio...');
 	return new Promise(resolve=> {
-		resolve({}) ;
+		resolve(true) ;
 	});
 }

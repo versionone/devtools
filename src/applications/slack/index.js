@@ -5,7 +5,7 @@ import config from './../../config';
 
 export function settings() {
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
 
@@ -17,6 +17,6 @@ export function install() {
 		return shell('choco install slack -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

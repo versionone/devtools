@@ -6,7 +6,7 @@ import path from 'path';
 
 export function settings(){
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
 
@@ -17,6 +17,6 @@ export function install() {
 			.then(()=>shell('choco install ruby.devkit -y'));
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

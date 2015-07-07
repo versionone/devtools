@@ -16,6 +16,6 @@ export function install() {
 		return shell('choco install atom -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

@@ -6,7 +6,7 @@ import path from 'path';
 
 export function settings() {
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
 
@@ -16,6 +16,6 @@ export function install() {
 		return shell('choco install python2 -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }

@@ -6,7 +6,7 @@ import path from 'path';
 
 export function settings() {
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
 
@@ -16,6 +16,6 @@ export function install() {
 		return shell('brew cask install alfred');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
