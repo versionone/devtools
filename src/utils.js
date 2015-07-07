@@ -18,7 +18,7 @@ export function mklink(src, dest) {
 	if (config.isWindows) {
 		command = `mklink ${dest} ${src}`;
 	}
-	return shell(command);
+	return bash(command);
 }
 
 export function readdir(directoryPath) {
@@ -38,6 +38,11 @@ export function shell(command) {
 	if (config.isWindows){
 		return powershell(command);
 	}
+	console.log(command);
+	return bash(command);
+}
+
+export function bash(command) {
 	console.log(command);
 	return new Promise((resolve, reject) => {
 		exec(command, (error, stdout, stderr)=> {
