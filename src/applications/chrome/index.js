@@ -8,33 +8,64 @@ import fs from 'fs';
 var googleChromeExtensionPath = path.join(config.home, 'Library/Application\ Support/Google/Chrome/External\ Extensions');
 
 export function settings() {
-	if (config.isOsx) {
-		Object.keys(extensions).forEach(key=> {
-			fs.writeFile(path.join(googleChromeExtensionPath, `${key}.json`), `{external_udpate_url:${extensions[key]}`, 'utf8');
-		});
-	}
-	if (config.isWindows) {
-		var regedit = require('regedit');
-		var registryKey = 'HKEY_LOCAL_MACHINE\\Software\\Wow6432Node\\Google\\Chrome\\Extensions';
-		regedit.list(registryKey, (error, result)=> {
-			if (error) {
-				console.log(error);
-			}
-			if (!result) {
-				regedit.createKey(registryKey);
-			}
-
-			var registryValue = {};
+	return new Promise((resolve, reject)=> {
+		if (config.isOsx) {
 			Object.keys(extensions).forEach(key=> {
-				registryValue[`${registryKey}\${key}`] = {
-					"update_url": extensions[key]
-				};
+				fs.writeFile(path.join(googleChromeExtensionPath, `${key}.json`), `{external_udpate_url:${extensions[key]}`, 'utf8');
 			});
-			regedit.putValue(registryValue);
-		});
-	}
-	return new Promise(resolve=> {
-		resolve({});
+			resolve(true);
+		}
+		resolve(true);
+		//if (config.isWindows) {
+		//	var regedit = require('regedit');
+		//	var registryKey = 'HKEY_LOCAL_MACHINE\\SOFTWARE\\Wow6432Node\\Google\\Chrome';
+		//	regedit.list(registryKey, (error, result)=> {
+		//		if (error) {
+		//			reject(error);
+		//			return;
+		//		}
+		//		if (!result) {
+		//			regedit.createKey(registryKey, (error)=> {
+		//				if (error) {
+		//					reject(error);
+		//					return;
+		//				}
+		//				registryKey += '\\Extensions';
+		//				regedit.list(registryKey, (error, result)=> {
+		//					if (error) {
+		//						console.log(error);
+		//						reject(error);
+		//						return;
+		//					}
+		//					if (!result) {
+		//						regedit.createKey(registryKey, (error)=> {
+		//							if (error) {
+		//								reject(error);
+		//								return;
+		//							}
+		//							var registryValue = {};
+		//							registryValue[registryKey] = {};
+		//							Object.keys(extensions).forEach(key=> {
+		//								registryValue[registryKey][key] = {
+		//									value: `{"update_url": "${extensions[key]}"}`,
+		//									type: 'REG_SZ'
+		//								};
+		//							});
+		//							console.log(registryValue);
+		//							regedit.putValue(registryValue, (error)=> {
+		//								if (error) {
+		//									reject(error);
+		//									return;
+		//								}
+		//								resolve(true);
+		//							});
+		//						});
+		//					}
+		//				});
+		//			});
+		//		}
+		//	});
+		//}
 	});
 }
 
@@ -46,6 +77,6 @@ export function install() {
 		return shell('choco install googlechrome -y');
 	}
 	return new Promise(resolve=> {
-		resolve({});
+		resolve(true);
 	});
 }
