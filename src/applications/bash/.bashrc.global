@@ -2,6 +2,8 @@ REPO_HOME=$HOME/Developer/repositories
 
 [ -f $HOME/.alias ] &&	source $HOME/.alias
 [ -f $HOME/git-completion.bash ] && source $HOME/git-completion.bash
+[ -f $HOME/git-prompt.sh ] && source $HOME/git-prompt.sh
+[ -f $HOME/git-prompt.sh ] && PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 # OSX bash files
 if [ "$OSTYPE" == "darwin"* ]; then

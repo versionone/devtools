@@ -18,7 +18,7 @@ export function settings() {
 				});
 			files
 				.filter(item=> {
-					return item === 'git-completion.bash';
+					return item === 'git-completion.bash' || item === 'git-prompt.sh';
 				})
 				.forEach(item=> {
 					mklink(path.join(__dirname, item), path.join(config.home, item));
