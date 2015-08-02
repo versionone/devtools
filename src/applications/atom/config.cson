@@ -1,6 +1,5 @@
 "*":
   core:
-    disabledPackages: []
     themes: [
       "solarized-dark-ui"
       "solarized-dark-syntax"
@@ -19,3 +18,9 @@
   react: {}
   "exception-reporting":
     userId: "ab4dd5de-c884-7b8e-222e-65c2cec345c8"
+  "advanced-new-file":
+    caseSensitiveAutoCompletion: true
+    showFilesInAutoComplete: true
+    suggestCurrentFilePath: true
+  "auto-host-markdown-image":
+    hostFromYourGithubRepoInsteadOfImgur: true
