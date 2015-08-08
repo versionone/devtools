@@ -4,6 +4,7 @@ REPO_HOME=$HOME/Developer/repositories
 [ -f $HOME/git-completion.bash ] && source $HOME/git-completion.bash
 [ -f $HOME/git-prompt.sh ] && source $HOME/git-prompt.sh
 [ -f $HOME/git-prompt.sh ] && PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+[ -f $HOME/.git-shortcuts ] && source $HOME/.git-shortcuts
 
 # OSX bash files
 if [ "$OSTYPE" == "darwin"* ]; then
@@ -13,6 +14,7 @@ fi
 # Windows bash files
 if [ "$OSTYPE" == "win"* ]; then
   [ -f $HOME/.alias.win ] && source $HOME/.alias.win
+  [ -f $HOME/.git-shortcuts.win ] && source $HOME/.git-shortcuts.win
 fi
 
 [ -f $HOME/.bash_rc.v1 ] && source $HOME/.bash_rc.v1

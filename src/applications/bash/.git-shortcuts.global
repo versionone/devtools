@@ -1,0 +1,36 @@
+function grh() {
+  git reset --hard
+  git clean -fd
+}
+
+function gnb() {
+  if ! [ -z "$1" ] ; then
+    git checkout $1
+  fi
+  git checkout -b $0
+}
+
+function gdb() {
+  if ! [ -z "$1" ]; then
+    git push $1 --delete $0
+  fi
+  git branch -D $0
+}
+
+function gpull() {
+  if ! [ -z "$0" ]; then
+    if ! [ -z "$1" ]; then
+      git pull --rebase $0 $1
+    fi
+    git pull --rebase origin $0
+  else
+    git pull --rebase
+  fi
+}
+
+alias gci='git commit -m "$0"'
+alias gmt='git mergetool'
+alias gdf='git difftool'
+alias gfa='git fetch --all'
+alias gst='git status'
+alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
