@@ -1,8 +1,3 @@
-setupdb ()
-{
-    bake db:util:compile && bundle exec rake db:initialize;
-    iisreset
-}
 dev-lic ()
 {
     cp ${REPO_HOME}/Core/Common/Licenses/VersionOne.Dev.lic ${REPO_HOME}/Core/VersionOne.Web/bin/;
@@ -21,5 +16,18 @@ recycle ()
 
 upgrade ()
 {
-    bake db:util:compile && bake db:upgrade && bake db:upgrade
+  iisreset;
+  bake generate:metadata db:util:compile db:upgrade && bake db:upgrade
+}
+
+dbnuke ()
+{
+  iisreset
+  if [ -f $HOME/Developer/utilities/DemoData/15.1/DemoData.bak ]; then
+    sqlcmd -S localhost -U sa -P dev -Q "
+      USE [master]
+      RESTORE DATABASE [VersionOne] FROM  DISK = N'${HOME}\Developer\utilities\DemoData\15.1\DemoData.bak' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
+      GO"
+  fi
+    upgrade;
 }
