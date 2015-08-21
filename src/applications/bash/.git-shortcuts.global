@@ -44,11 +44,11 @@ function stash() {
 }
 
 alias push='git push'
-alias commit='git commit -m "$0"'
-alias checkout='git checkout $0'
+alias commit='git commit -m "$1"'
+alias checkout='git checkout $1'
 alias mt='git mergetool'
 alias df='git difftool'
 alias fa='git fetch --all'
 alias st='git status'
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-alias setbranch='git branch --set-upstream-to=$0/$1'
+alias setbranch='git branch --set-upstream-to=$1/$2'
