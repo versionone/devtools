@@ -16,11 +16,13 @@ recycle ()
 
 dbnuke ()
 {
-  iisreset
-  if [ -f ~/Developer/utilities/DemoData/15.1/DemoData.bak ]; then
+  Version = "${0:-default 15.1}"
+  DemoData = ~/Developer/utilities/DemoData/${Version}/DemoData.bak
+  if [ -f $DemoData ]; then
+    iisreset
     sqlcmd -S localhost -U sa -P dev -Q "
       USE [master]
-      RESTORE DATABASE [VersionOne] FROM  DISK = N'C:\DemoData\15.1\DemoData.bak' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
+      RESTORE DATABASE [VersionOne] FROM  DISK = N'${DemoData}' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
       GO
     "
     sqlcmd -S localhost -U sa -P dev -Q "
@@ -39,7 +41,7 @@ dbnuke ()
 
 upgrade ()
 {
-  iisreset;
+  iisreset
   bake generate:metadata db:util:compile db:upgrade && bake db:upgrade
 }
 
