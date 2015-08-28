@@ -7,7 +7,15 @@ function rh() {
   git clean -fd
 }
 
-function branch() {
+function lbr {
+  if ! [ -z "$1" ]; then
+    git branch -a | grep "$1"
+  else
+    git branch -a
+  fi
+}
+
+function nbr() {
   git stash
   if ! [ -z "$2" ] ; then
   	git checkout $1
@@ -18,7 +26,7 @@ function branch() {
   fi
 }
 
-function dbranch() {
+function dbr() {
   if ! [ -z "$2" ]; then
 	git push $2 --delete $1
   fi
@@ -27,13 +35,13 @@ function dbranch() {
 
 function pull() {
   if ! [ -z "$1" ]; then
-	if ! [ -z "$2" ]; then
-	  git pull --rebase $1 $2
-	fi
-	  echo $1
-	git pull --rebase origin $1
+  	if ! [ -z "$2" ]; then
+  	  git pull --rebase $1 $2
+  	else
+	    git pull --rebase origin $1
+    fi
   else
-	git pull --rebase
+	   git pull --rebase
   fi
 }
 
@@ -45,12 +53,28 @@ function stash() {
 	fi
 }
 
+function commit() {
+  if ! [ -z "$1" ]; then
+    git commit -m "$1"
+  else
+    echo "You did not specific a commit message"
+  fi
+}
+
+function setbr() {
+  if ! [ -z "$1" ] & ! [ -z "$2" ]; then
+    git branch --set-upstream-to=$1/$2
+  else
+    echo "You must supply the remote and branch names"
+  fi
+}
+
 alias push='git push'
-alias commit='git commit -m "$1"'
-alias checkout='git checkout $1'
 alias mt='git mergetool'
 alias df='git difftool'
 alias fa='git fetch --all'
 alias st='git status'
 alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
-alias setbranch='git branch --set-upstream-to=$1/$2'
+alias rebc='git rebase --continue'
+alias rebs='git rebase --skip'
+alias reba='git rebase --abort'
