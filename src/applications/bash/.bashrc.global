@@ -15,9 +15,8 @@ fi
 if [ "$OSTYPE" == "win"* ]; then
   [ -f $HOME/.alias.win ] && source $HOME/.alias.win
   [ -f $HOME/.git-shortcuts.win ] && source $HOME/.git-shortcuts.win
+  [ -f $HOME/.bash_rc.v1 ] && source $HOME/.bash_rc.v1
 fi
-
-[ -f $HOME/.bash_rc.v1 ] && source $HOME/.bash_rc.v1
 
 # added by travis gem
 [ -f /Users/andrewsmith/.travis/travis.sh ] && source /Users/andrewsmith/.travis/travis.sh
