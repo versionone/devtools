@@ -13,10 +13,10 @@ if [ "$OSTYPE" == "darwin"* ]; then
 fi
 
 # Windows bash files
-if [ "$OSTYPE" == "win"* ]; then
+if [ "$OSTYPE" == "win"* -o "$OSTYPE" == "msys" ]; then
   [ -f $HOME/.alias.win ] && source $HOME/.alias.win
   [ -f $HOME/.git-shortcuts.win ] && source $HOME/.git-shortcuts.win
-  [ -f $HOME/.bash_rc.v1 ] && source $HOME/.bash_rc.v1
+  [ -f $HOME/.bash_rc.v1.win ] && source $HOME/.bash_rc.v1.win
 fi
 
 # added by travis gem
@@ -45,5 +45,3 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
-
-eval "$(rbenv init -)"

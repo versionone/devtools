@@ -1,5 +1,5 @@
 function rh() {
-  if ! [ -z "$1" ] && ! [ -z "$2" ]; then
+  if ! [ -z "$1" -o -z "$2" ]; then
     git reset --hard $1/$2
   else
     git reset --hard
@@ -62,7 +62,7 @@ function commit() {
 }
 
 function setbr() {
-  if ! [ -z "$1" ] & ! [ -z "$2" ]; then
+  if ! [ -z "$1" -o -z "$2" ]; then
     git branch --set-upstream-to=$1/$2
   else
     echo "You must supply the remote and branch names"
