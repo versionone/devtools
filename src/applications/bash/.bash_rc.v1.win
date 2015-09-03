@@ -16,15 +16,17 @@ recycle ()
 
 dbnuke ()
 {
-  Version="${1:-default 15.1}"
-  DemoData=$DEV_HOME/utilities/DemoData/${Version}/DemoData.bak
+  Version="${1:-15.1}"
   if [ -f $DemoData ]; then
-    iisreset
-    sqlcmd -S localhost -U sa -P dev -Q "
+    DemoData=$DEV_HOME/utilities/DemoData/${Version}/DemoData.bak
+    DemoDataWinPath=$(echo $DemoData | sed -e "s/\///" | sed -e "s/\//\\\/g" | sed -e "s/\\\/:\\\/")
+    sql="
       USE [master]
-      RESTORE DATABASE [VersionOne] FROM  DISK = N'${DemoData}' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
+      RESTORE DATABASE [VersionOne] FROM  DISK = N'$DemoDataWinPath' WITH  FILE = 1,  NOUNLOAD,  REPLACE,  STATS = 5
       GO
     "
+    iisreset
+    sqlcmd -S localhost -U sa -P dev -Q "$sql"
     sqlcmd -S localhost -U sa -P dev -Q "
       USE [VersionOne]
       GO
@@ -39,7 +41,7 @@ dbnuke ()
   currentDir=$PWD
   cd $REPO_HOME/Core
   upgrade
-  cd currentDir
+  cd $currentDir
 }
 
 upgrade ()
