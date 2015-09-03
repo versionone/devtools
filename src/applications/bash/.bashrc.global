@@ -1,4 +1,5 @@
 REPO_HOME=$HOME/Developer/repositories
+DEV_HOME=$HOME/Developer
 
 [ -f $HOME/.alias ] &&	source $HOME/.alias
 [ -f $HOME/git-completion.bash ] && source $HOME/git-completion.bash
