@@ -9,14 +9,15 @@ export function mklink(src, dest) {
 	try {
 		fs.unlinkSync(dest);
 	} catch (error) {
+		console.error(error);
 	}
 	src = path.resolve(src);
 	var command = '';
 	if (config.isOsx) {
-		command = `ln -s ${src} ${dest}`;
+		command = `ln -sfn ${src} ${dest}`;
 	}
 	if (config.isWindows) {
-		command = `mklink ${dest} ${src}`;
+		command = `mklink "${dest}" "${src}"`;
 	}
 	return bash(command);
 }

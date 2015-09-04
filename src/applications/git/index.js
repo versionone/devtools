@@ -13,11 +13,11 @@ export function settings() {
 		.then(files => {
 			files
 				.map(item => item.replace(/\.global$/))
-				.filter(/diffmerge/.exec)
+				.filter(item => !(/diffmerge/.exec))
 				.forEach(item => {
 					mklink(path.join(__dirname, item), path.join(config.home, item));
 				});
-			let diffmerge = files.find(/diffmerge/.exec);
+			let diffmerge = 'diffmerge';
 			let gitMergeToolsDir;
 			if (config.isOsx) {
 				gitMergeToolsDir = '/usr/local/git/libexec/git-core/mergetools';
