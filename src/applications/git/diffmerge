@@ -1,0 +1,19 @@
+diff_cmd () {
+	"$merge_tool_path" \
+		--title1="Local Changes" --title2="Remote Changes" \
+		"$LOCAL" "$REMOTE" >/dev/null 2>&1
+}
+
+merge_cmd () {
+	if $base_present
+	then
+		"$merge_tool_path" --merge --result="$MERGED" \
+			--title1="Local Changes" --title2="Merged: $MERGED" --title3="Remote Changes" \
+			"$LOCAL" "$BASE" "$REMOTE"
+	else
+		"$merge_tool_path" --merge \
+			--title1="Local Changes" --title2="Remote Changes" \
+			--result="$MERGED" "$LOCAL" "$REMOTE"
+	fi
+	status=$?
+}
