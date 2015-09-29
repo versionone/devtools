@@ -45,3 +45,13 @@ if [ -f "${SSH_ENV}" ]; then
 else
      start_agent;
 fi
+
+function hl() {
+  src="pbpaste"
+  if [ -z "$2" ]
+    then syntax="darkblue"
+  else
+    syntax="$2"
+  fi
+  $src | highlight -O rtf --syntax $1 --font Inconsolata --style $syntax --font-size 24 | pbcopy
+}
