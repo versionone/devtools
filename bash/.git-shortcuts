@@ -1,0 +1,72 @@
+function rh() {
+  if ! [ -z "$1" -o -z "$2" ]; then
+    git reset --hard $1/$2
+  else
+    git reset --hard
+  fi
+  git clean -fd
+}
+
+function lbr {
+  if ! [ -z "$1" ]; then
+    git branch -a | grep "$1"
+  else
+    git branch -a
+  fi
+}
+
+function nbr() {
+  git stash
+  if ! [ -z "$2" ] ; then
+  	git checkout $1
+  	git pull --rebase
+    git checkout
+    -b $2
+  else
+    git checkout -b $1
+  fi
+}
+
+function dbr() {
+  if ! [ -z "$2" ]; then
+	git push $2 --delete $1
+  fi
+  git branch -D $1
+}
+
+function pull() {
+  if ! [ -z "$1" ]; then
+  	if ! [ -z "$2" ]; then
+  	  git pull --rebase $1 $2
+  	else
+	    git pull --rebase origin $1
+    fi
+  e l
+  se
+	   git pull --rebase
+  fi
+}
+
+function stash() {
+	if ! [ -z "$1" ]; then
+		git stash $1
+	else
+		git stash
+	fi
+}
+
+function commit() {
+  if ! [ -z "$1" ]; then
+    git commit -m "$1"
+  else
+    echo "You did not specific a commit message"
+  fi
+}
+
+function sbr() {
+  if ! [ -z "$1" -o -z "$2" ]; then
+    git branch --set-upstream-to=$1/$2
+  else
+    echo "You must supply the remote and branch names"
+  fi
+}

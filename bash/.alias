@@ -1,0 +1,22 @@
+alias push='git push'
+alias mt='git mergetool'
+alias df='git difftool'
+alias fa='git fetch --all'
+alias st='git status'
+alias glg="git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative"
+alias rebc='git rebase --continue'
+alias rebs='git rebase --skip'
+alias reba='git rebase --abort'
+
+alias bake="bundle exec rake"
+
+# OSX bash files
+if [ $IS_OSX ]; then
+  [ -f $HOME/.alias.osx ] && source $HOME/.alias.osx
+fi
+
+# Windows bash files
+if [ $IS_WIN ]; then
+  [ -f $HOME/.alias.win ] && source $HOME/.alias.win
+  [ -f $HOME/.git-shortcuts.win ] && source $HOME/.git-shortcuts.win
+fi
